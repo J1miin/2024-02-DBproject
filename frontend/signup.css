@@ -1,0 +1,74 @@
+body {
+  background-image: url("images/background.png");
+  background-size: 393px 852px; /* 배경 이미지 크기 고정 */
+  background-repeat: no-repeat; /* 이미지 반복 제거 */
+  background-position: center; /* 이미지 중앙 정렬 */
+  margin: 0;
+  height: 100vh; /* 화면 전체 높이 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.contents {
+  width: 393px;
+  height: 852px;
+  overflow: hidden;
+}
+
+.logo {
+  position: relative;
+  left: 36px;
+  top: 50px;
+}
+
+#signup-form {
+  position: relative;
+  top: 50px;
+  left: 15px;
+  max-width: 300px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#signup-form input {
+  font-size: 15px;
+  height: 30px;
+  background-color: #f5f5f5;
+}
+
+.signup-input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 30px;
+  border: 2px solid black;
+  border-radius: 5px;
+  outline: none;
+}
+
+.signin_button {
+  position: relative;
+  font-size: 15px;
+  top: 30px;
+  left: 130px;
+  display: block;
+  width: 30%;
+  padding: 15px;
+  color: white;
+  background-color: #004737;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
