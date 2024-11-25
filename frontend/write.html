@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Spring App</title>
+    <link rel="stylesheet" href="write.css" />
+  </head>
+  <body>
+    <div class="flex">
+      <div class="contents">
+        <header>
+          <div class="back-btn">
+            <a href="main_writer.html"><img src="images/back.png" /></a>
+          </div>
+        </header>
+        <main>
+          <div class="name-container">
+            <textarea class="name-area" placeholder="이름"></textarea>
+          </div>
+          <div class="letter-container">
+            <textarea
+              class="text-area"
+              name="message"
+              placeholder="여기에 편지를 작성하세요..."
+              maxlength="75"
+              oninput="updateCharacterCount(this)"
+              required
+            ></textarea>
+            <p id="char-count">0/75</p>
+            <input type="submit" class="submit-button" value="굽기" />
+          </div>
+        </main>
+        <footer>
+          <div></div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  function updateCharacterCount(textarea) {
+    const maxLength = textarea.maxLength;
+    const currentLength = textarea.value.length;
+    const charCount = document.getElementById("char-count");
+    charCount.textContent = `${currentLength}/${maxLength}`;
+  }
+</script>
