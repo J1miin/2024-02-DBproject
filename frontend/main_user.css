@@ -1,5 +1,5 @@
 body {
-  background-image: url("images/background.png");
+  background-image: url("images/main_w_background.png");
   background-size: 393px 852px; /* 배경 이미지 크기 고정 */
   background-repeat: no-repeat; /* 이미지 반복 제거 */
   background-position: center; /* 이미지 중앙 정렬 */
@@ -55,7 +55,7 @@ body {
   margin: 0;
   font-size: 19px;
   position: relative;
-  bottom: 475px;
+  top: 70px;
   left: 120px;
   width: 250px;
   height: 33px;
