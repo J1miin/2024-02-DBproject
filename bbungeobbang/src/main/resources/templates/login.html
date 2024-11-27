@@ -16,9 +16,6 @@
     </header>
     <main id="login-form">
       <form action="/login" method="post">
-        <!-- CSRF 토큰 추가 -->
-        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
-
         <div>
           <input class="login-input" id="login-id" name="username" type="text" placeholder="아이디를 입력하세요." required/>
         </div>

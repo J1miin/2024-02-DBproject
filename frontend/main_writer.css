@@ -1,5 +1,5 @@
 body {
-  background-image: url("/images/main_w_background.png");
+  background-image: url("images/main_w_background.png");
   background-size: 393px 852px; /* 배경 이미지 크기 고정 */
   background-repeat: no-repeat; /* 이미지 반복 제거 */
   background-position: center; /* 이미지 중앙 정렬 */
@@ -45,6 +45,7 @@ body {
   grid-template-columns: repeat(4, 1fr); /* 4열 */
   grid-template-rows: repeat(3, 1fr); /* 3행 */
   gap: 0px; /* 붕어빵 간격 */
+  background-color: rgba(255, 255, 255, 0.2); /* 약간 투명한 배경 */
   border-radius: 10px; /* 둥근 모서리 */
 }
 

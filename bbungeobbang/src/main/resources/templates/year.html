@@ -1,44 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Spring App</title>
-    <link rel="stylesheet" href="year.css" />
-  </head>
-  <body>
-    <div class="flex">
-      <div class="contents">
-        <header>
-          <div class="back-btn">
-            <a href="main_user.html"><img src="../../../../../../데베설front파일/images/back.png" /></a>
-          </div>
-          <div class="title"><p>@@@님의</p></div>
-          <div class="title"><p>연도별 겨울 붕어빵</p></div>
-        </header>
-        <main>
-          <div class="btn_form">
-            <input
-              class="year_btn"
-              type="button"
-              value="2023년 11월 ~ 2024년 1월"
-              onclick='location.href="main_user.html"'
-            />
-            <input
-              class="year_btn"
-              type="button"
-              value="2023년 11월 ~ 2024년 1월"
-              onclick='location.href="main_user.html"'
-            />
-            <input
-              class="year_btn"
-              type="button"
-              value="2023년 11월 ~ 2024년 1월"
-              onclick='location.href="main_user.html"'
-            />
-          </div>
-        </main>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Spring App</title>
+  <link rel="stylesheet" href="/css/year.css" />
+</head>
+<body>
+<div class="flex">
+  <div class="contents">
+    <header>
+      <div class="back-btn">
+        <a th:href="@{/main_user}" th:attr="title='Back to main'"><img src="/images/back.png" alt="Back" /></a>
       </div>
-    </div>
-  </body>
+      <div class="title">
+        <p th:text="${nickname}">님의</p>
+      </div>
+      <div class="title"><p>연도별 겨울 붕어빵</p></div>
+    </header>
+    <main>
+      <div class="btn_form">
+        <!-- 연도별 붕어빵 버튼들 -->
+        <input
+                class="year_btn"
+                type="button"
+                th:value="'2023년 11월 ~ 2024년 1월'"
+                onclick="location.href='main_user.html'"
+        />
+        <input
+                class="year_btn"
+                type="button"
+                th:value="'2022년 11월 ~ 2023년 1월'"
+                onclick="location.href='main_user.html'"
+        />
+        <input
+                class="year_btn"
+                type="button"
+                th:value="'2021년 11월 ~ 2022년 1월'"
+                onclick="location.href='main_user.html'"
+        />
+      </div>
+    </main>
+  </div>
+</div>
+</body>
 </html>

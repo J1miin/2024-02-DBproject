@@ -1,5 +1,5 @@
 body {
-  background-image: url("/images/main_w_background.png");
+  background-image: url("images/main_w_background.png");
   background-size: 393px 852px; /* 배경 이미지 크기 고정 */
   background-repeat: no-repeat; /* 이미지 반복 제거 */
   background-position: center; /* 이미지 중앙 정렬 */
@@ -48,33 +48,17 @@ body {
 
 .shape {
   position: relative;
-  top: 160px;
-  width: 390px; /* 틀의 너비 */
-  height: 250px; /* 틀의 높이 */
-  padding-left: 4px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4열 */
-  grid-template-rows: repeat(3, 1fr); /* 3행 */
-  gap: 0px; /* 붕어빵 간격 */
-  border-radius: 10px; /* 둥근 모서리 */
+  top: 80px;
 }
 
 .year_fish {
   margin: 0;
   font-size: 19px;
   position: relative;
-  top: -180px;
-  left: 130px;
+  top: 70px;
+  left: 120px;
   width: 250px;
   height: 33px;
   border-radius: 10px;
   background-color: #f2e1bf;
-}
-.fish {
-  width: 80%; /* 셀 크기의 80%로 줄이기 */
-  height: auto; /* 이미지 비율 유지 */
-  margin: auto; /* 이미지가 셀의 중앙에 위치하도록 설정 */
-  object-fit: contain; /* 이미지가 셀 크기에 맞도록 조정 */
-  transition: transform 0.3s ease; /* 위치 조정 시 애니메이션 */
-  cursor: pointer;
 }

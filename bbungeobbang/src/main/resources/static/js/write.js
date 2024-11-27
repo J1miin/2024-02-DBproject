@@ -5,8 +5,30 @@ function updateCharacterCount(textarea) {
     charCount.textContent = `${currentLength}/${maxLength}`;
 }
 
+function submitForm(event) {
+    event.preventDefault(); // 기본 폼 제출 동작을 막음
+
+    // 폼 데이터 제출
+    const form = document.getElementById('letterForm');
+    const formData = new FormData(form);
+
+    // AJAX로 폼 데이터를 서버로 제출
+    fetch(form.action, {
+        method: form.method,
+        body: formData
+    })
+        .then(response => response.json()) // 서버에서 응답이 온 후
+        .then(data => {
+            // 서버 응답 처리 후 bakeFish 알림 호출
+            bakeFish(); // 알림 및 페이지 이동 함수 호출
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 
  function bakeFish() {
+
     // 현재 시간 저장
     const now = new Date().getTime();
 

@@ -1,30 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Main Writer</title>
-  <link rel="stylesheet" href="/css/main_writer.css" />
-</head>
-<body>
-<div class="flex">
-  <div class="contents">
-    <header>
-      <a th:href="@{/write}" class="write_btn">
-        <img src="/images/write_btn.png" alt="Write Button" />
-      </a>
-    </header>
-    <main>
-      <div class="shape"></div>
-    </main>
-    <footer>
-      <div></div>
-    </footer>
-  </div>
-</div>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Spring App</title>
+    <link rel="stylesheet" href="main_writer.css" />
+  </head>
+  <body>
+    <div class="flex">
+      <div class="contents">
+        <header>
+          <a href="write.html" class="write_btn"
+            ><img src="images/write_btn.png"
+          /></a>
+        </header>
+        <main>
+          <div class="shape"></div>
+        </main>
+        <footer>
+          <div></div>
+        </footer>
+      </div>
+    </div>
+  </body>
 </html>
-
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const fishGrid = document.querySelector(".shape");
@@ -46,7 +45,7 @@
 
       // UI에 상태 반영
       img.src =
-              fish.state === "baked" ? "/images/bake.png" : "/images/nonbake.png";
+        fish.state === "baked" ? "images/bake.png" : "images/nonbake.png";
       img.alt = "붕어빵";
       img.classList.add("fish");
       img.dataset.index = index;
@@ -64,7 +63,7 @@
         const timeRemaining = 3 * 60 * 60 * 1000 - timeElapsed; // 남은 시간 계산
         setTimeout(() => {
           fish.state = "baked"; // 상태 변경
-          img.src = "/images/bake.png"; // 이미지 변경
+          img.src = "images/bake.png"; // 이미지 변경
 
           // 로컬 스토리지 업데이트
           fishStates[index] = fish;

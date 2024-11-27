@@ -40,4 +40,10 @@ public class Letter {
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;
+
+    @Column
+    private Boolean isBaked;
+    public boolean isBaked() {
+        return unLockTimer != null && LocalDateTime.now().isAfter(unLockTimer);
+    }
 }

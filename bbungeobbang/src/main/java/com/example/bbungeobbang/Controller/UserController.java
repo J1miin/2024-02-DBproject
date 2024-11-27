@@ -60,8 +60,11 @@ public class UserController {
             );
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
+            String authenticatedUserId = authentication.getName();
+            System.out.println(authenticatedUserId+"로그인 성공");
+            // 리다이렉션 URL에 userId를 포함시켜서 반환합니다.
+            return "redirect:/main/" + authenticatedUserId;
 
-            return "redirect:/home"; // 로그인 성공 >> home.html이동
         } catch (BadCredentialsException e) {
             model.addAttribute("error", "아이디나 비밀번호가 잘못되었습니다.");
             return "login"; // 로그인 실패 시 다시 로그인 폼으로

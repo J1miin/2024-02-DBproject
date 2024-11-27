@@ -1,0 +1,69 @@
+body {
+  background-image: url("images/background.png");
+  background-size: 393px 852px; /* 배경 이미지 크기 고정 */
+  background-repeat: no-repeat; /* 이미지 반복 제거 */
+  background-position: center; /* 이미지 중앙 정렬 */
+  margin: 0;
+  height: 100vh; /* 화면 전체 높이 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.contents {
+  width: 393px;
+  height: 852px;
+  overflow: hidden;
+}
+
+/*----------*/
+.back-btn {
+  position: relative;
+  top: 20px;
+  left: 20px;
+}
+
+.title {
+  margin: 0px;
+  position: relative;
+  top: 120px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.title p {
+  margin: 0px;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.btn_form {
+  position: relative;
+  top: 100px;
+}
+
+.year_btn {
+  position: relative;
+  top: 100px;
+  width: 330px;
+  height: 45px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f2e1bf;
+  font-size: 22px;
+  font-weight: 600;
+  padding-left: 15px;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  text-align: left;
+}

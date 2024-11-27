@@ -18,6 +18,10 @@ public class SecurityConfig {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
+    @Autowired
+    private CustomAuthenticationSuccessHandler authenticationSuccessHandler; // Custom handler 주입
+
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -32,17 +36,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-//                .csrf().disable()
                 .authorizeHttpRequests((request) -> request
-                        .requestMatchers("/{userId}/main").hasRole("USER")
-//                                .requestMatchers("/register", "/login", "/{userId}/letter/write","/home").permitAll()  // 해당 경로는 인증 없이 접근 가능
-//                                .requestMatchers("/", "/auth/**", "/js/**", "/css/**", "/images/**").permitAll()
+//                        .requestMatchers("/main/{userId}").hasRole("USER")
+//                        .requestMatchers("/fishStates").hasRole("USER")
+                                .requestMatchers("/register", "/login", "/{userId}/letter/write","/main/**","/fishStates").permitAll()  // 해당 경로는 인증 없이 접근 가능
+                                .requestMatchers("/", "/auth/**", "/js/**", "/css/**", "/images/**").permitAll()
                                 .anyRequest().anonymous()
                 )
                     .formLogin(form -> form
                             .loginPage("/login")
                             .loginProcessingUrl("/login")
-                            .defaultSuccessUrl("/") // 로그인 성공 후 이동 페이지
+                            .successHandler(authenticationSuccessHandler) // 로그인 성공 후 이동 페이지
                             .permitAll()
                     );
         return http.build();

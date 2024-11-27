@@ -17,7 +17,7 @@
       </div>
     </header>
     <main>
-      <form th:action="@{/{userId}/letter/write(userId=${userId})}" method="post">
+      <form th:action="@{/{userId}/letter/write(userId=${userId})}" method="post" onsubmit="bakeFish();">
         <!-- 작성자 이름 입력 -->
         <textarea
                 class="name-area"

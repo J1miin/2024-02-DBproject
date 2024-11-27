@@ -17,8 +17,6 @@
     <main id="signup-form">
       <!-- 폼 시작 -->
       <form action="/register" method="post">
-        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
-
         <div>
           <input class="signup-input" id="signup-nickname" name="nickname" type="text" placeholder="이름을 입력하세요." required/>
         </div>
