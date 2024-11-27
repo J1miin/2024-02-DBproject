@@ -28,6 +28,7 @@ public class FishController {
                 .map(letter -> new FishDTO(
                         letter.getLetterId(),
                         letter.getWriterName(),
+                        letter.getCreateDate(),
                         letter.getUnLockTimer(),
                         letter.getIsBaked(),
                         letter.getContents()

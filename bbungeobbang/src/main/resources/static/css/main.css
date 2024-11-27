@@ -48,8 +48,8 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
 }
-
 .write_btn {
     position: relative;
     left: 65px;
@@ -57,12 +57,16 @@ body {
 }
 
 .fish {
-    width: 80%;
+    width: 85%;
     height: auto;
     margin: auto;
     object-fit: cover;
     transition: transform 0.3s ease;
     cursor: pointer;
+    position: relative;
+    display: block;
+    top:10px;
+    left:3.5px;
 }
 .year_fish {
     margin: 0;
@@ -74,4 +78,22 @@ body {
     height: 33px;
     border-radius: 10px;
     background-color: #f2e1bf;
+}
+
+.fish-info {
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    margin-top: 13px;
+
+}
+
+.fish-info p {
+    margin: 0px 0;
+    padding : 0;
+}
+
+.fish-info .timer {
+    font-size: 8px; /* 타이머 텍스트만 폰트 크기 반으로 줄이기 */
+    padding: 0px;
 }

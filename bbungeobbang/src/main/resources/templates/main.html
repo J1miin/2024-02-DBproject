@@ -48,6 +48,7 @@
   const userId = '[[${userId}]]';
   document.addEventListener("DOMContentLoaded", () => {
     const fishGrid = document.querySelector(".shape");
+    console.log(fishGrid)
     // 서버에서 붕어빵 상태 가져오기
     function fetchFishStates() {
       fetch("/fishStates/"+userId)
@@ -55,12 +56,33 @@
               .then(fishStates => {
                 fishGrid.innerHTML = ""; // 기존 붕어빵들 초기화
                 fishStates.forEach((fish, index) => {
+                  // 붕어 이미지와 정보를 담을 div 생성
+                  const fishDiv = document.createElement("div");
+                  fishDiv.classList.add("fish-item");
+
+                  // 붕어빵 이미지 추가
                   const img = document.createElement("img");
                   img.src = fish.isBaked ? "/images/bake.png" : "/images/nonbake.png";
                   img.alt = "붕어빵";
                   img.classList.add("fish");
 
-                  // 로그인 여부에 따라 클릭 동작 변경
+                  // 붕어빵 아래에 작성자명과 타이머 추가
+                  const infoDiv = document.createElement("div");
+                  infoDiv.classList.add("fish-info");
+
+                  const writerName = document.createElement("p");
+                  writerName.innerText = `작성자: ${fish.writerName}`;
+                  infoDiv.appendChild(writerName);
+
+                  const timer = document.createElement("p");
+                  const timerText = fish.isBaked
+                          ? `다 구워졌어요!`
+                          : `${new Date(fish.unLockTimer).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}에 열람 가능`;
+                  timer.innerText = timerText;
+                  timer.classList.add("timer"); // 타이머에 클래스 추가
+                  infoDiv.appendChild(timer);
+
+                  // 붕어빵 이미지 클릭 이벤트
                   img.addEventListener("click", () => {
                     if (fish.isBaked && "${isLoggedIn}" === "true") {
                       alert(`${fish.writerName} 님이 작성한 편지입니다.`);
@@ -71,13 +93,17 @@
                     }
                   });
 
+                  // 생성된 이미지와 정보 div를 하나의 div에 추가
+                  fishDiv.appendChild(img);
+                  fishDiv.appendChild(infoDiv);
+
                   // 위치 계산
                   const row = Math.floor(index / 3) + 1;
                   const col = (index % 3) + 1;
-                  img.style.gridColumn = col;
-                  img.style.gridRow = row;
+                  fishDiv.style.gridColumn = col;
+                  fishDiv.style.gridRow = row;
 
-                  fishGrid.appendChild(img);
+                  fishGrid.appendChild(fishDiv);
                 });
               })
               .catch(error => console.error("Error:", error));
