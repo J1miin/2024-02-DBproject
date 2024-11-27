@@ -61,14 +61,13 @@ body {
 
 .login_button {
   position: relative;
-  font-size: 20px;
+  font-size: 20px !important;
   top: 70px;
-  left: 130px;
+  left: 120px;
   display: block;
   width: 30%;
-  padding: 15px;
   color: white;
-  background-color: #004737;
+  background-color: #004737 !important;
   border: 2px solid black;
   border-radius: 5px;
   cursor: pointer;
@@ -79,7 +78,7 @@ body {
   color: white;
   position: relative;
   top: 80px;
-  left: 160px;
+  left: 135px;
 }
 
 /**클릭 후 색상 유지**/
