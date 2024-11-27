@@ -45,6 +45,7 @@
 </body>
 </html>
 <script>
+  const isLoggedIn = '[[${isLoggedIn}]]';
   const userId = '[[${userId}]]';
   document.addEventListener("DOMContentLoaded", () => {
     const fishGrid = document.querySelector(".shape");
@@ -84,7 +85,7 @@
 
                   // 붕어빵 이미지 클릭 이벤트
                   img.addEventListener("click", () => {
-                    if (fish.isBaked && "${isLoggedIn}" === "true") {
+                    if (fish.isBaked && isLoggedIn === "true") {
                       alert(`${fish.writerName} 님이 작성한 편지입니다.`);
                     } else if (!fish.isBaked) {
                       alert("아직 붕어빵이 덜 익었어요!");

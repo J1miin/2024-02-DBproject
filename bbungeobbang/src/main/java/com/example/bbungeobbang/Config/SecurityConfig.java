@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((request) -> request
 //                        .requestMatchers("/main/{userId}").hasRole("USER")
 //                        .requestMatchers("/fishStates").hasRole("USER")
-                                .requestMatchers("/register", "/login", "/{userId}/letter/write","/main/**","/fishStates").permitAll()  // 해당 경로는 인증 없이 접근 가능
+                                .requestMatchers("/register", "/login", "/{userId}/letter/write","/main/**","/fishStates/**").permitAll()  // 해당 경로는 인증 없이 접근 가능
                                 .requestMatchers("/", "/auth/**", "/js/**", "/css/**", "/images/**").permitAll()
                                 .anyRequest().anonymous()
                 )
