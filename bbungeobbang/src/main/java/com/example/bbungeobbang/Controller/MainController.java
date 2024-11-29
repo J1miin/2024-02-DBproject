@@ -35,18 +35,22 @@ public class MainController {
         // 로그인 여부 확인
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isLoggedIn = false;
+        String currentUserId = null;
 
-// 인증된 사용자가 있을 때만 isLoggedIn을 true로 설정
+        // 인증된 사용자가 있을 때만 isLoggedIn을 true로 설정
         if (authentication != null && authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken)) {
             isLoggedIn = true;
+            currentUserId = authentication.getName();
         }
-
-// 로그인 상태를 모델에 추가
+        if (isLoggedIn && !userId.equals(currentUserId)) {
+            return "redirect:/access-denied"; // 접근이 거부된 페이지로 리디렉션
+        }
+        // 로그인 상태를 모델에 추가
         model.addAttribute("isLoggedIn", isLoggedIn);
 
         System.out.println("로그인 한 사용자 여부: " + isLoggedIn);
 
-// 유저 정보가 있을 때만 추가 처리
+        // 유저 정보가 있을 때만 추가 처리
         if (user.isPresent()) {
             model.addAttribute("nickname", user.get().getNickname());
             model.addAttribute("breadCount", letterRepository.countLettersByUserId(userId));
@@ -55,5 +59,10 @@ public class MainController {
         }
 
         return "main";
+    }
+
+    @GetMapping("/access-denied")
+    public String accessDenied() {
+        return "access-denied";
     }
 }
