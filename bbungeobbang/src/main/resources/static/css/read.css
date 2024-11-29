@@ -44,3 +44,33 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+
+
+#writerName{
+  left:160px;
+  position: relative;
+  top: 77px;
+  align-items: center;
+}
+
+.letter-content {
+  display: flex;
+  justify-content: center; /* 가로 방향 중앙 정렬 */
+  align-items: center;     /* 세로 방향 중앙 정렬 */
+}
+
+.letter-content textarea {
+  width: 50%;
+  height: 150px;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin-left: 14px;
+  margin-top:100px;
+  resize: none;
+}
+.back-btn{
+  position: relative;
+  left: 20px;
+  top: 50px;
+}

@@ -11,15 +11,24 @@
   <div class="contents">
     <header>
       <div class="back-btn">
-        <a th:href="@{/main_writer}">
+        <a th:href="@{/main/{userId}(userId=${userId})}" >
           <img th:src="@{/images/back.png}" alt="Back" />
         </a>
       </div>
     </header>
-    <main></main>
+    <main>
+      <!-- 작성자 표시 -->
+      <div class="letter-info">
+        <p id="writerName"><span th:text="${writerName}">작성자 이름</span></p>
+      </div>
+
+      <!-- 편지 내용 입력 칸 -->
+      <div class="letter-content">
+        <textarea th:text="${contents}" readonly></textarea>
+      </div>
+    </main>
     <footer>
-      <input type="button" class="submit-button" value="닫기" th:onclick="|location.href='@{/main_user}'|"
-      />
+      <input type="button" class="submit-button" value="닫기" th:onclick="|location.href='@{/main_user}'|"/>
     </footer>
   </div>
 </div>

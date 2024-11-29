@@ -6,12 +6,18 @@ import com.example.bbungeobbang.Repository.LetterRepository;
 import com.example.bbungeobbang.Repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -59,11 +65,52 @@ public class LetterController {
         return "redirect:/main/{userId}";
     }
 
-    // GET 편지 읽기 - 로그인 사용자만 가능
-    @GetMapping("/{userId}/letter/read/{letterId}")
-    public String showReadPage(Model model, @PathVariable String userId, @PathVariable Long letterId) {
-        model.addAttribute("userId", userId);
-        return "read";
+    //읽기
+    @GetMapping("/main/{userId}/read/{letterId}")
+    public String showReadPage(Model model, @PathVariable String userId, @PathVariable Integer letterId) {
+
+        // SecurityContext에서 Authentication 객체 가져오기
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();
+
+        // 인증된 사용자인지 확인
+        if (authentication == null || !authentication.isAuthenticated() || "anonymousUser".equals(authentication.getPrincipal())) {
+            return "redirect:/login"; // 로그인 페이지로 리다이렉트
+        }
+
+        // 로그인된 사용자 ID 가져오기
+        String loggedInUserId;
+        if (authentication.getPrincipal() instanceof UserDetails) {
+            loggedInUserId = ((UserDetails) authentication.getPrincipal()).getUsername();
+        } else {
+            loggedInUserId = authentication.getPrincipal().toString();
+        }
+
+        // 로그인된 사용자와 요청된 사용자 비교
+        if (!loggedInUserId.equals(userId)) {
+            model.addAttribute("error", "권한이 없습니다.");
+            return "error"; // 에러 페이지로 이동
+        }
+
+        // 편지 조회
+        Optional<Letter> optionalLetter = letterRepository.findById(letterId);
+        if (optionalLetter.isPresent()) {
+            Letter letter = optionalLetter.get();
+
+            // 'letter' 객체에서 writerName과 contents를 개별적으로 모델에 추가
+            model.addAttribute("writerName", letter.getWriterName());
+            model.addAttribute("contents", letter.getContents());
+
+            // 'letter' 객체도 모델에 추가
+            model.addAttribute("letter", letter); // 선택사항, 나중에 전체 letter 객체를 활용할 때 유용함
+            model.addAttribute("userId", userId); // 'userId'도 모델에 추가
+        } else {
+            model.addAttribute("error", "편지를 찾을 수 없습니다.");
+            return "error"; // 편지가 없는 경우 에러 페이지로 이동
+        }
+
+        return "read"; // 읽기 페이지로 이동
     }
+
 
 }
