@@ -97,13 +97,10 @@ public class LetterController {
         if (optionalLetter.isPresent()) {
             Letter letter = optionalLetter.get();
 
-            // 'letter' 객체에서 writerName과 contents를 개별적으로 모델에 추가
             model.addAttribute("writerName", letter.getWriterName());
             model.addAttribute("contents", letter.getContents());
-
-            // 'letter' 객체도 모델에 추가
-            model.addAttribute("letter", letter); // 선택사항, 나중에 전체 letter 객체를 활용할 때 유용함
-            model.addAttribute("userId", userId); // 'userId'도 모델에 추가
+            model.addAttribute("letter", letter);
+            model.addAttribute("userId", userId);
         } else {
             model.addAttribute("error", "편지를 찾을 수 없습니다.");
             return "error"; // 편지가 없는 경우 에러 페이지로 이동
