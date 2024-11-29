@@ -23,7 +23,7 @@
         </div>
       </div>
       <div th:unless="${isLoggedIn}">
-        <a th:href="@{/write}" class="write_btn">
+        <a th:href="@{/{userId}/letter/write(userId=${userId})}" class="write_btn">
           <img src="/images/write_btn.png" alt="Write Button" />
         </a>
       </div>
@@ -86,7 +86,8 @@
                   // 붕어빵 이미지 클릭 이벤트
                   img.addEventListener("click", () => {
                     if (fish.isBaked && isLoggedIn === "true") {
-                      alert(`${fish.writerName} 님이 작성한 편지입니다.`);
+                      // 붕어빵 클릭 시 해당 letterId로 페이지 이동
+                      window.location.href = `/main/${userId}/read/${fish.letterId}`;
                     } else if (!fish.isBaked) {
                       alert("아직 붕어빵이 덜 익었어요!");
                     } else {

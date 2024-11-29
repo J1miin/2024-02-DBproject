@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface LetterRepository extends JpaRepository<Letter, Long> {
+public interface LetterRepository extends JpaRepository<Letter, Integer> {
     @Query("SELECT COUNT(el) FROM Letter el WHERE el.user.userId = :userId")
     Long countLettersByUserId(@Param("userId") String userId);
     @Query("SELECT el FROM Letter el WHERE el.user.userId = :userId")
