@@ -53,17 +53,31 @@ body {
 }
 
 .year_btn {
+  display: block; /* 블록으로 처리하여 width, height 적용 */
   position: relative;
-  top: 100px;
+  top: 40px;
   width: 330px;
   height: 45px;
   border-radius: 10px;
   border: none;
   background-color: #f2e1bf;
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 600;
   padding-left: 15px;
   margin-bottom: 30px;
   margin-left: 30px;
-  text-align: left;
+  text-align: center;
+  line-height: 45px; /* 텍스트를 세로 가운데 정렬 */
+  text-decoration: none; /* 링크의 밑줄 제거 */
+  color: black; /* 텍스트 색상 지정 */
+}
+
+.year_btn:hover {
+  background-color: #e3d4aa; /* 호버 시 색상 변경 */
+}
+
+.noneAlarm{
+  position: relative;
+  top:13px;
+  left:-8px;
 }

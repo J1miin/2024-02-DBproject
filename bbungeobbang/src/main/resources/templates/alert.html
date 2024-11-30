@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Spring App</title>
+  <title>붕어빵 알림창</title>
   <link rel="stylesheet" href="/css/alert.css" />
 </head>
 <body>
@@ -11,28 +11,21 @@
   <div class="contents">
     <header>
       <div class="back-btn">
-        <!-- 동적 링크 처리 -->
-        <a th:href="@{/main_user}"><img src="/images/back.png" /></a>
+        <a th:href="@{/main/{userId}(userId=${userId})}" ><img src="/images/back.png" /></a>
       </div>
-      <!-- nickname을 동적으로 삽입 -->
-      <div class="title"><p th:text="${nickname}">님의</p></div>
-      <div class="title"><p>붕어빵 알림창</p></div>
+      <div class="title"><p th:text="${nickname}+'님의'"></p></div>
+      <div class="title"><p>🔔붕어빵 알림창🔔</p></div>
     </header>
     <main>
       <div class="btn_form">
-        <!-- writerName을 동적으로 출력 -->
-        <input
-                class="year_btn"
-                type="button"
-                th:value="${writerName} + ' 붕어가 다 익었습니다.'"
-                th:onclick="'location.href=' + @{/main_user}"
-        />
-        <input
-                class="year_btn"
-                type="button"
-                value="새로운 편지가 생겼습니다."
-                onclick='location.href="main_user.html"'
-        />
+        <div class=year_btn th:if="${alarmContents.empty}">
+          <p class="noneAlarm">🔕 알림이 없어요</p>
+        </div>
+        <div th:each="alarm : ${alarmContents}" th:unless="${alarmContents.empty}">
+          <a class="year_btn" th:href="@{/main/{userId}(userId=${userId})}" th:text="${alarm}"></a>
+        </div>
+
+
       </div>
     </main>
   </div>

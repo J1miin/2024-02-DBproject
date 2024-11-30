@@ -17,7 +17,7 @@
           <p th:text="'붕어빵이 ' + ${breadCount} + '개 구워지고 있어요'"></p>
         </div>
         <div class="bell">
-          <a th:href="@{/alert}">
+          <a th:href="@{/alarm/{userId}(userId=${userId})}">
             <img src="/images/bell.png" />
           </a>
         </div>
