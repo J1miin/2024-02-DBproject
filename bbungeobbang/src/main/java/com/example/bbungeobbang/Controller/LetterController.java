@@ -89,7 +89,7 @@ public class LetterController {
         // 로그인된 사용자와 요청된 사용자 비교
         if (!loggedInUserId.equals(userId)) {
             model.addAttribute("error", "권한이 없습니다.");
-            return "error"; // 에러 페이지로 이동
+            return "redirect:/access-denied";
         }
 
         // 편지 조회

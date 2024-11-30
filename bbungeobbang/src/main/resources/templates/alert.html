@@ -21,11 +21,9 @@
         <div class=year_btn th:if="${alarmContents.empty}">
           <p class="noneAlarm">🔕 알림이 없어요</p>
         </div>
-        <div th:each="alarm : ${alarmContents}" th:unless="${alarmContents.empty}">
-          <a class="year_btn" th:href="@{/main/{userId}(userId=${userId})}" th:text="${alarm}"></a>
-        </div>
-
-
+        <a class="year_btn"
+           th:href="'/main/' + ${userId} + (alarm != null and alarm.isBaked ? '/read/' + ${alarm.letterId} : '')"
+           th:text="${alarm.alarmContents}"></a>
       </div>
     </main>
   </div>

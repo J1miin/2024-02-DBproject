@@ -25,6 +25,12 @@ public class Alarm {
     @Column(nullable = false)
     private LocalDate alarmDate;
 
+    @Column(name = "letterId", nullable = false)
+    private Integer letterId;
+
+    @Column(name = "isBaked", columnDefinition = "TINYINT")
+    private Boolean isBaked;
+
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;

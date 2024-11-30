@@ -43,7 +43,7 @@ public class MainController {
             currentUserId = authentication.getName();
         }
         if (isLoggedIn && !userId.equals(currentUserId)) {
-            return "redirect:/access-denied"; // 접근이 거부된 페이지로 리디렉션
+            isLoggedIn = false;
         }
         // 로그인 상태를 모델에 추가
         model.addAttribute("isLoggedIn", isLoggedIn);
