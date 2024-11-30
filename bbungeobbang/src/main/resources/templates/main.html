@@ -32,11 +32,11 @@
       <div class="shape"></div>
       <!-- 연도별 붕어빵 페이지 이동 버튼 -->
       <div th:if="${isLoggedIn}">
-        <input
+        <a
                 class="year_fish"
-                type="button"
-                th:value="'연도 별 겨울 붕어빵 보러가기'"
-                th:onclick="'location.href=' + @{/year}" />
+                th:href="@{/year/{userId}(userId=${userId})}"
+                th:text="'연도 별 겨울 붕어빵 보러가기'"></a>
+
       </div>
     </main>
     <footer></footer>

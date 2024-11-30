@@ -78,6 +78,15 @@ body {
     height: 33px;
     border-radius: 10px;
     background-color: #f2e1bf;
+    display: inline-block;
+    text-align: center;
+    line-height: 33px;  /* 텍스트를 수직 중앙 정렬 */
+    text-decoration: none;  /* 링크 스타일 제거 */
+    color: #000;  /* 텍스트 색상 */
+}
+
+.year_fish:hover {
+    background-color: #e0c397;  /* hover 시 색상 변경 */
 }
 
 .fish-info {
