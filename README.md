@@ -23,5 +23,3 @@ AI융합학부 2022113171 이승연
 |:-----:|:-----:|
 |[@J1miin](https://github.com/J1miin)|[@seungyeone](https://github.com/seungyeone)|
 |동국대학교 <br>컴퓨터공학과 22학번|동국대학교<br> AI융합학부 22학번|
-
-ㅎ
