@@ -42,7 +42,7 @@ body {
 
 .shape {
     position: relative;
-    top: 160px;
+    top: 123px;
     width: 390px;
     height: 250px;
     display: grid;
@@ -72,7 +72,7 @@ body {
     margin: 0;
     font-size: 19px;
     position: relative;
-    top: -180px;
+    top: -220px;
     left: 130px;
     width: 250px;
     height: 33px;
@@ -105,4 +105,18 @@ body {
 .fish-info .timer {
     font-size: 8px; /* 타이머 텍스트만 폰트 크기 반으로 줄이기 */
     padding: 0px;
+}
+
+.notlogin{
+    font-weight: bold;
+    margin: 0;
+    position: relative;
+    top: 105px;
+    text-align: center;
+    color: white;
+}
+
+.forStyle{
+    margin-top:15px;
+    color:#c03039;
 }

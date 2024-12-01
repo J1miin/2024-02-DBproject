@@ -21,11 +21,13 @@
             <img src="/images/bell.png" />
           </a>
         </div>
+        <div class="forStyle">tets</div>
       </div>
       <div th:unless="${isLoggedIn}">
         <a th:href="@{/{userId}/letter/write(userId=${userId})}" class="write_btn">
           <img src="/images/write_btn.png" alt="Write Button" />
         </a>
+        <p class="notlogin" th:text="${nickname} + '님에게 붕어빵 남기기 🐟🍞'"></p>
       </div>
     </header>
     <main>
