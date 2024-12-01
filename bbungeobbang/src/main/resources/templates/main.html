@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main</title>
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+<div class="flex">
+  <div class="contents">
+    <header>
+      <!-- 로그인 여부에 따라 다른 내용 표시 -->
+      <div th:if="${isLoggedIn}">
+        <div class="fish_num">
+          <p th:text="${nickname} + '님의'"></p>
+          <p th:text="'붕어빵이 ' + ${breadCount} + '개 구워지고 있어요'"></p>
+        </div>
+        <div class="bell">
+          <a th:href="@{/alarm/{userId}(userId=${userId})}">
+            <img src="/images/bell.png" />
+          </a>
+        </div>
+        <div class="forStyle">tets</div>
+      </div>
+      <div th:unless="${isLoggedIn}">
+        <a th:href="@{/{userId}/letter/write(userId=${userId})}" class="write_btn">
+          <img src="/images/write_btn.png" alt="Write Button" />
+        </a>
+        <p class="notlogin" th:text="${nickname} + '님에게 붕어빵 남기기 🐟🍞'"></p>
+      </div>
+    </header>
+    <main>
+      <div class="shape"></div>
+      <!-- 연도별 붕어빵 페이지 이동 버튼 -->
+      <div th:if="${isLoggedIn}">
+        <a
+                class="year_fish"
+                th:href="@{/year/{userId}(userId=${userId})}"
+                th:text="'연도 별 겨울 붕어빵 보러가기'"></a>
+
+      </div>
+    </main>
+    <footer></footer>
+  </div>
+</div>
+</body>
+</html>
+<script>
+  const isLoggedIn = '[[${isLoggedIn}]]';
+  const userId = '[[${userId}]]';
+  document.addEventListener("DOMContentLoaded", () => {
+    const fishGrid = document.querySelector(".shape");
+    console.log(fishGrid)
+    // 서버에서 붕어빵 상태 가져오기
+    function fetchFishStates() {
+      fetch("/fishStates/"+userId)
+              .then(response => response.json())
+              .then(fishStates => {
+                fishGrid.innerHTML = ""; // 기존 붕어빵들 초기화
+                fishStates.forEach((fish, index) => {
+                  // 붕어 이미지와 정보를 담을 div 생성
+                  const fishDiv = document.createElement("div");
+                  fishDiv.classList.add("fish-item");
+
+                  // 붕어빵 이미지 추가
+                  const img = document.createElement("img");
+                  img.src = fish.isBaked ? "/images/bake.png" : "/images/nonbake.png";
+                  img.alt = "붕어빵";
+                  img.classList.add("fish");
+
+                  // 붕어빵 아래에 작성자명과 타이머 추가
+                  const infoDiv = document.createElement("div");
+                  infoDiv.classList.add("fish-info");
+
+                  const writerName = document.createElement("p");
+                  writerName.innerText = `작성자: ${fish.writerName}`;
+                  infoDiv.appendChild(writerName);
+
+                  const timer = document.createElement("p");
+                  const timerText = fish.isBaked
+                          ? `다 구워졌어요!`
+                          : `${new Date(fish.unLockTimer).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}에 열람 가능`;
+                  timer.innerText = timerText;
+                  timer.classList.add("timer"); // 타이머에 클래스 추가
+                  infoDiv.appendChild(timer);
+
+                  // 붕어빵 이미지 클릭 이벤트
+                  img.addEventListener("click", () => {
+                    if (fish.isBaked && isLoggedIn === "true") {
+                      // 붕어빵 클릭 시 해당 letterId로 페이지 이동
+                      window.location.href = `/main/${userId}/read/${fish.letterId}`;
+                    } else if (!fish.isBaked) {
+                      alert("아직 붕어빵이 덜 익었어요!");
+                    } else {
+                      alert("로그인 후 확인할 수 있습니다!");
+                    }
+                  });
+
+                  // 생성된 이미지와 정보 div를 하나의 div에 추가
+                  fishDiv.appendChild(img);
+                  fishDiv.appendChild(infoDiv);
+
+                  // 위치 계산
+                  const row = Math.floor(index / 3) + 1;
+                  const col = (index % 3) + 1;
+                  fishDiv.style.gridColumn = col;
+                  fishDiv.style.gridRow = row;
+
+                  fishGrid.appendChild(fishDiv);
+                });
+              })
+              .catch(error => console.error("Error:", error));
+    }
+
+    fetchFishStates();
+    setInterval(fetchFishStates, 60000); // 1분마다 갱신
+  });
+</script>
+

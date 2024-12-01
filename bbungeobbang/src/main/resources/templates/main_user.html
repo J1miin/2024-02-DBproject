@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main_User</title>
+  <link rel="stylesheet" href="/css/main_user.css" />
+</head>
+<body>
+<div class="flex">
+  <div class="contents">
+    <header>
+      <div class="fish_num">
+        <!-- nickname과 붕어빵 개수를 동적으로 삽입 -->
+        <p th:text="${nickname} + '님의'"></p>
+        <p th:text="'붕어빵이 ' + ${breadCount} + '개 구워지고 있어요'">
+        </p>
+      </div>
+    </header>
+    <main>
+      <div class="bell">
+        <!-- 알림 페이지로 이동 -->
+        <a th:href="@{/alert}">
+          <img src="/images/bell.png" />
+        </a>
+      </div>
+      <div class="shape"></div>
+      <div>
+        <!-- 연도별 붕어빵 페이지로 이동 -->
+        <input
+                class="year_fish"
+                type="button"
+                th:value="'연도 별 겨울 붕어빵 보러가기'"
+                th:onclick="'location.href=' + @{/year}"
+        />
+      </div>
+    </main>
+    <footer>
+      <div></div>
+    </footer>
+  </div>
+</div>
+</body>
+</html>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const fishGrid = document.querySelector(".shape");
+
+    // 붕어빵 상태를 서버에서 받아오는 함수
+    function fetchFishStates() {
+      fetch("/fishStates")
+              .then(response => response.json())  // 서버에서 응답을 JSON으로 파싱
+              .then(fishStates => {
+                console.log(fishStates);  // 서버에서 받아온 데이터 확인
+                fishGrid.innerHTML = "";  // 기존 붕어빵들 초기화
+                fishStates.forEach((fish, index) => {
+                  const img = document.createElement("img");
+                  // 붕어빵 상태 확인 (isBaked 메서드를 활용)
+                  img.src = fish.isBaked ? "/images/bake.png" : "/images/nonbake.png";
+                  img.alt = "붕어빵";
+                  img.classList.add("fish");
+                  img.dataset.index = index;
+                  img.dataset.writerName = fish.writerName;  // 작성자
+                  img.dataset.createDate = fish.createDate;  // 생성일
+                  img.dataset.isBaked = fish.isBaked;  // 구워진 상태
+
+                  // 위치 계산 및 배치
+                  const row = Math.floor(index / 3) + 1;
+                  const col = (index % 3) + 1;
+                  img.style.gridColumn = col;
+                  img.style.gridRow = row;
+
+                  fishGrid.appendChild(img);
+                });
+              })
+              .catch(error => {
+                console.error('Error:', error);  // 오류가 발생한 경우 콘솔에 출력
+              });
+    }
+
+    // 페이지가 로드될 때 한 번 실행
+    fetchFishStates();
+
+    // 1분마다 붕어빵 상태를 갱신
+    setInterval(fetchFishStates, 60000);
+
+  });
+
+
+</script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>붕어빵 알림창</title>
+  <link rel="stylesheet" href="/css/alert.css" />
+</head>
+<body>
+<div class="flex">
+  <div class="contents">
+    <header>
+      <div class="back-btn">
+        <a th:href="@{/main/{userId}(userId=${userId})}" ><img src="/images/back.png" /></a>
+      </div>
+      <div class="title"><p th:text="${nickname}+'님의'"></p></div>
+      <div class="title"><p>🔔붕어빵 알림창🔔</p></div>
+    </header>
+    <main>
+      <div class="btn_form">
+        <div class=year_btn th:if="${alarmContents.empty}">
+          <p class="noneAlarm">🔕 알림이 없어요</p>
+        </div>
+        <div th:each="alarm : ${alarmContents}" th:unless="${alarmContents.empty}">
+          <a class="year_btn" th:href="@{/main/{userId}(userId=${userId})}" th:text="${alarm}"></a>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

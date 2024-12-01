@@ -1,0 +1,87 @@
+body {
+  background-image: url("/images/background.png");
+  background-size: 393px 852px; /* 배경 이미지 크기 고정 */
+  background-repeat: no-repeat; /* 이미지 반복 제거 */
+  background-position: center; /* 이미지 중앙 정렬 */
+  margin: 0;
+  height: 100vh; /* 화면 전체 높이 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.contents {
+  width: 393px;
+  height: 852px;
+  overflow: hidden;
+}
+
+/**휴대폰 size 고정**/
+
+.logo {
+  position: relative;
+  left: 36px;
+  top: 100px;
+}
+
+#login-form {
+  position: relative;
+  top: 80px;
+  left: 15px;
+  max-width: 300px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#login-form input {
+  font-size: 15px;
+  height: 30px;
+  background-color: #f5f5f5;
+}
+
+.login-input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 30px;
+  border: 2px solid black;
+  border-radius: 5px;
+  outline: none;
+}
+
+.login_button {
+  position: relative;
+  font-size: 20px !important;
+  top: 70px;
+  left: 120px;
+  display: block;
+  width: 30%;
+  color: white;
+  background-color: #004737 !important;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.go_signin {
+  color: white;
+  position: relative;
+  top: 80px;
+  left: 135px;
+}
+
+/**클릭 후 색상 유지**/
+.go_signin a:visited {
+  color: white;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Spring App</title>
+  <link rel="stylesheet" href="/css/year.css" />
+</head>
+<body>
+<div class="flex">
+  <div class="contents">
+    <header>
+      <div class="back-btn">
+        <a th:href="@{/main/{userId}(userId=${userId})}">
+          <img th:src="@{/images/back.png}" alt="Back" />
+        </a>
+      </div>
+      <div class="title">
+        <p th:text="${nickname}+ '님의'"></p>
+      </div>
+      <div class="title"><p>연도별 겨울 붕어빵</p></div>
+    </header>
+    <main>
+      <div class="btn_form">
+        <div class="btn_form">
+          <input class="year_btn" type="button" th:value="'2023년 11월 ~ 2024년 1월'"
+                 th:data-href="@{/year/{userId}/2023(userId=${userId})}"
+                 onclick="location.href=this.getAttribute('data-href')" />
+
+          <input class="year_btn" type="button" th:value="'2022년 11월 ~ 2023년 1월'"
+                 th:data-href="@{/year/{userId}/2022(userId=${userId})}"
+                 onclick="location.href=this.getAttribute('data-href')" />
+
+          <input class="year_btn" type="button" th:value="'2021년 11월 ~ 2022년 1월'"
+                 th:data-href="@{/year/{userId}/2021(userId=${userId})}"
+                 onclick="location.href=this.getAttribute('data-href')" />
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>

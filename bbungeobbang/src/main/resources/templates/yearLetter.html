@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yearly Letters</title>
+  <link rel="stylesheet" href="/css/yearLetter.css" />
+</head>
+<body>
+<div class="flex">
+  <div class="contents">
+    <header>
+      <div class="back-btn">
+        <a th:href="@{/main/{userId}(userId=${userId})}">
+          <img th:src="@{/images/back.png}" alt="Back" />
+        </a>
+      </div>
+      <div class="title">
+        <p class ="title1" th:text="${nickname}+님의"></p>
+      </div>
+      <div class="title">
+        <p class="title2" th:text="|${year}년 ~ ${year + 1}년 붕어빵|"></p>
+      </div>
+    </header>
+
+    <main>
+      <div class="no-letters-box" th:if="${#lists.isEmpty(letters)}">
+        <p>해당 연도에 구워진 붕어빵이 없어요! ㅠㅠ</p>
+      </div>
+      <div th:each="letter : ${letters}">
+        <div class="letter">
+          <p><strong>작성자:</strong> <span th:text="${letter.writerName}"></span></p>
+          <p><strong>내용:</strong> <span th:text="${letter.contents}"></span></p>
+          <p><strong>작성일:</strong> <span th:text="${letter.formattedDate}"></span></p>
+          <p th:if="${letter.isBaked()}"><strong>붕어빵이 잘 구워졌어요!</strong></p>
+          <p th:if="${!letter.isBaked()}"><strong>붕어빵이 아직 구워지지 않았어요!</strong></p>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+</body>
+</html>

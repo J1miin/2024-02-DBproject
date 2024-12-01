@@ -1,0 +1,110 @@
+body {
+    background-image: url("/images/background.png");
+    background-size: 393px 852px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    height: 100vh; /* 화면 전체 높이 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.contents {
+    width: 393px;
+    height: 852px;
+    overflow: hidden;
+}
+
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    position:relative;
+    top:70px;
+    text-align:center;
+}
+
+.title p {
+    background-color: rgba(255, 255, 204, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    color: #000000;
+    width: fit-content;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.title1{
+    margin-bottom: 0px;
+}
+.title2{
+    margin-top: 5px;
+    margin-bottom: 100px;
+}
+
+.year_btn {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    background-color: #f2a3a3;
+    border: none;
+    cursor: pointer;
+}
+
+.year_btn:hover {
+    background-color: #e68a8a;
+}
+
+.letter {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+
+.letter p {
+    margin: 5px 0;
+}
+
+.letter strong {
+    font-weight: bold;
+}
+
+.back-btn {
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+
+.no-letters-box {
+    margin-top:100px;
+    background-color: #f9e3a5;
+    width: 378px;
+    height: 590px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-left:7.5px;
+}
+
+.no-letters-box p {
+    margin: 0;
+}

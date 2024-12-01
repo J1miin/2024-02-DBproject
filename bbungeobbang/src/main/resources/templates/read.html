@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Spring App</title>
+  <link rel="stylesheet" th:href="@{/css/read.css}" />
+</head>
+<body>
+<div class="flex">
+  <div class="contents">
+    <header>
+      <div class="back-btn">
+        <a th:href="@{/main/{userId}(userId=${userId})}" >
+          <img th:src="@{/images/back.png}" alt="Back" />
+        </a>
+      </div>
+    </header>
+    <main>
+      <div class="letter-info">
+        <p id="writerName"><span th:text="${writerName}">작성자 이름</span></p>
+      </div>
+
+      <div class="letter-content">
+        <textarea th:text="${contents}" readonly></textarea>
+      </div>
+    </main>
+    <footer>
+      <input type="button" class="submit-button" value="닫기" th:onclick="|location.href='@{/main_user}'|"/>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

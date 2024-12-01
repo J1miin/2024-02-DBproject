@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Write a Letter</title>
+  <link rel="stylesheet" th:href="@{/css/write.css}" />
+</head>
+<body>
+<div class="flex">
+  <div class="contents">
+    <header>
+      <div class="back-btn">
+        <a th:href="@{/main/{userId}(userId=${userId})}">
+          <img th:src="@{/images/back.png}" alt="Back" />
+        </a>
+      </div>
+    </header>
+    <main>
+      <form th:action="@{/{userId}/letter/write(userId=${userId})}" method="post" onsubmit="bakeFish();">
+        <!-- 작성자 이름 입력 -->
+        <textarea
+                class="name-area"
+                name="writerName"
+                placeholder="이름"
+                maxlength="50"
+                required
+        ></textarea>
+
+        <!-- 편지 내용 입력 -->
+        <textarea
+                class="text-area"
+                name="contents"
+                placeholder="여기에 편지를 작성하세요..."
+                maxlength="75"
+                required
+                oninput="updateCharacterCount(this)"
+        ></textarea>
+        <p id="char-count">0/75</p>
+
+        <!-- 제출 버튼 -->
+        <button type="submit" class="submit-button">굽기</button>
+      </form>
+
+    </main>
+    <footer>
+      <div></div>
+    </footer>
+  </div>
+</div>
+<script th:src="@{/js/write.js}"></script>
+</body>
+</html>
+
+
