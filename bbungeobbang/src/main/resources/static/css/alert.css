@@ -57,17 +57,16 @@ body {
   position: relative;
   top: 40px;
   width: 330px;
-  height: 45px;
+  height: fit-content;
   border-radius: 10px;
   border: none;
   background-color: #f2e1bf;
   font-size: 15px;
   font-weight: 600;
-  padding-left: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   margin-left: 30px;
   text-align: center;
-  line-height: 45px; /* 텍스트를 세로 가운데 정렬 */
+  line-height: 2;
   text-decoration: none; /* 링크의 밑줄 제거 */
   color: black; /* 텍스트 색상 지정 */
 }
