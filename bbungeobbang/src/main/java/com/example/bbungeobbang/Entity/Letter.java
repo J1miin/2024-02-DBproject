@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -45,5 +46,15 @@ public class Letter {
     private Boolean isBaked;
     public boolean isBaked() {
         return unLockTimer != null && LocalDateTime.now().isAfter(unLockTimer);
+    }
+
+    @Transient
+    private String formattedDate; // 포맷된 날짜 필드 추가
+
+    public void setFormattedDate() {
+        if (this.createDate != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            this.formattedDate = this.createDate.format(formatter);
+        }
     }
 }
